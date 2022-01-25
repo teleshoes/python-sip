@@ -40,7 +40,7 @@ sub main(@){
   sfdkCmd "python", "configure.py";
   sfdkCmd "make", "-j8";
   sfdkCmd "make", "DESTDIR=$buildRoot", "install";
-  sfdkCmd "rpmbuild", "-bb", $SPEC;
+  sfdkCmd "rpmbuild", "-bb", "--buildroot=$buildRoot", $SPEC;
   sfdkCmd "cp", "/home/mersdk/rpmbuild/RPMS/$$pkg{arch}/$rpmName.rpm", ".";
 }
 
