@@ -2,11 +2,11 @@
 use strict;
 use warnings;
 
+my $IS_64_BIT = 1;
+my $TARGET = $IS_64_BIT ? "SailfishOS-4.3.0.12-aarch64" : "SailfishOS-4.3.0.12-armv7hl";
+my $SPEC = $IS_64_BIT ? "RPM/SPEC/python2-sip-64bit.spec" : "RPM/SPEC/python2-sip-32bit.spec";
+
 my $SFDK = "$ENV{HOME}/SailfishOS/bin/sfdk";
-
-my $TARGET = "SailfishOS-4.3.0.12-aarch64";
-
-my $SPEC = "RPM/SPEC/python2-sip-64bit.spec";
 
 my @PKG_DEPS = qw(
   python
