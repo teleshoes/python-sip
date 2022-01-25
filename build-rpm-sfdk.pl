@@ -34,10 +34,12 @@ sub main(@){
   my $pkg = getPkgInfo();
   my $rpmName = "$$pkg{name}-$$pkg{version}-$$pkg{release}.$$pkg{arch}";
 
+  my $buildRoot = "/home/mersdk/rpmbuild/BUILDROOT/$rpmName";
+
   sfdkCmd "python", "build.py", "prepare";
   sfdkCmd "python", "configure.py";
   sfdkCmd "make", "-j8";
-  sfdkCmd "make", "DESTDIR=/home/mersdk/rpmbuild/BUILDROOT/$rpmName", "install";
+  sfdkCmd "make", "DESTDIR=$buildRoot", "install";
   sfdkCmd "rpmbuild", "-bb", $SPEC;
   sfdkCmd "cp", "/home/mersdk/rpmbuild/RPMS/$$pkg{arch}/$rpmName.rpm", ".";
 }
